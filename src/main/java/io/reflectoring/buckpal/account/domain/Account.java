@@ -17,13 +17,14 @@ public class Account {
         activities = new Activities();
     }
 
-    public boolean transferOut(MonetaryAmount monetaryAmount, AccountId destinationId) {
+    public MoneyTransferred transferOut(MonetaryAmount monetaryAmount, AccountId destinationId) {
         activities.add(Activity.create(monetaryAmount.negate(), destinationId));
-        return true;
+        return MoneyTransferred.create(monetaryAmount, accountId, destinationId);
     }
 
-    public void transferIn(MonetaryAmount monetaryAmount, AccountId sourceId) {
+    public MoneyTransferred transferIn(MonetaryAmount monetaryAmount, AccountId sourceId) {
         activities.add(Activity.create(monetaryAmount, sourceId));
+        return MoneyTransferred.create(monetaryAmount, sourceId, accountId);
     }
 
     public Activities getActivities() {

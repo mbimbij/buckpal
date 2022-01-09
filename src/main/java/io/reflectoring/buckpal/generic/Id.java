@@ -10,7 +10,7 @@ public class Id extends WrappedPrimitive<String> {
 
     private static Supplier<Id> idSupplier = () -> new Id(UUID.randomUUID().toString());
 
-    public static Id getNextId() {
+    public static Id generateNextId() {
         return idSupplier.get();
     }
 
