@@ -13,14 +13,11 @@ import javax.validation.constraints.NotNull;
 public
 class SendMoneyCommand extends SelfValidating<SendMoneyCommand> {
 
-    @NotNull
-    private final AccountId sourceAccountId;
+    @NotNull AccountId sourceAccountId;
 
-    @NotNull
-    private final AccountId targetAccountId;
+    @NotNull AccountId targetAccountId;
 
-    @NotNull
-    private final Money money;
+    @NotNull Money money;
 
     public SendMoneyCommand(
             AccountId sourceAccountId,
