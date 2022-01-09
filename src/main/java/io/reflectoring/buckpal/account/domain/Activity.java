@@ -10,4 +10,8 @@ public class Activity {
     Id id;
     MonetaryAmount monetaryAmount;
     AccountId accountId;
+
+    public static Activity create(MonetaryAmount monetaryAmount, AccountId accountId) {
+        return new Activity(Id.getNextId(), monetaryAmount, accountId);
+    }
 }

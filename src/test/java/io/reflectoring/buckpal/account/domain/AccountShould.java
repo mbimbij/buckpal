@@ -2,20 +2,11 @@ package io.reflectoring.buckpal.account.domain;
 
 import org.assertj.core.api.SoftAssertions;
 import org.javamoney.moneta.Money;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AccountShould {
-
-    private ActivityFactory activityFactory;
-
-    @BeforeEach
-    void setUp() {
-        activityFactory = Mockito.spy(new ActivityFactory());
-    }
 
     @Test
     void createAnActivity_whenTransferOut() {
@@ -25,7 +16,7 @@ class AccountShould {
         assertThat(account.getActivities().size()).isEqualTo(0);
 
         // WHEN
-        account.transferOut(activityFactory, Money.of(10, "EUR"), destination);
+        account.transferOut(Money.of(10, "EUR"), destination);
 
         // THEN
         assertThat(account.getActivities().size()).isEqualTo(1);
@@ -44,7 +35,7 @@ class AccountShould {
         assertThat(account.getActivities().size()).isEqualTo(0);
 
         // WHEN
-        account.transferIn(activityFactory, Money.of(10, "EUR"), source);
+        account.transferIn(Money.of(10, "EUR"), source);
 
         // THEN
         assertThat(account.getActivities().size()).isEqualTo(1);

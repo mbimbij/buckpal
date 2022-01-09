@@ -1,5 +1,6 @@
 package io.reflectoring.buckpal.account.domain;
 
+import io.reflectoring.buckpal.account.domain.event.MoneyTransferred;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -16,13 +17,13 @@ public class Account {
         activities = new Activities();
     }
 
-    public boolean transferOut(ActivityFactory activityFactory, MonetaryAmount monetaryAmount, AccountId destinationId) {
-        activities.add(activityFactory.createMovementActivity(monetaryAmount.negate(), destinationId));
+    public boolean transferOut(MonetaryAmount monetaryAmount, AccountId destinationId) {
+        activities.add(Activity.create(monetaryAmount.negate(), destinationId));
         return true;
     }
 
-    public void transferIn(ActivityFactory activityFactory, MonetaryAmount monetaryAmount, AccountId sourceId) {
-        activities.add(activityFactory.createMovementActivity(monetaryAmount, sourceId));
+    public void transferIn(MonetaryAmount monetaryAmount, AccountId sourceId) {
+        activities.add(Activity.create(monetaryAmount, sourceId));
     }
 
     public Activities getActivities() {
