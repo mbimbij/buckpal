@@ -6,6 +6,7 @@ import io.reflectoring.buckpal.account.application.port.in.SendMoneyCommand;
 import io.reflectoring.buckpal.account.application.port.in.UpdateAccountPort;
 import io.reflectoring.buckpal.account.domain.Account;
 import io.reflectoring.buckpal.account.domain.AccountId;
+import io.reflectoring.buckpal.account.domain.ActivityFactory;
 import lombok.RequiredArgsConstructor;
 import org.javamoney.moneta.Money;
 
@@ -15,6 +16,7 @@ public class SendMoneyService {
     private final LoadAccountPort loadAccountPort;
     private final LockAccountPort lockAccountPort;
     private final UpdateAccountPort updateAccountPort;
+    private final ActivityFactory activityFactory;
 
     public void sendMoney(SendMoneyCommand sendMoneyCommand) {
         Money monetaryAmount = sendMoneyCommand.getAmount();
@@ -26,8 +28,8 @@ public class SendMoneyService {
         lockAccountPort.lock(sourceId);
         lockAccountPort.lock(destinationId);
 
-        sourceAccount.transferOut(monetaryAmount, destinationId);
-        destinationAccount.transferIn(monetaryAmount, sourceId);
+        sourceAccount.transferOut(activityFactory, monetaryAmount, destinationId);
+        destinationAccount.transferIn(activityFactory, monetaryAmount, sourceId);
 
         updateAccountPort.updateAccount(sourceAccount);
         updateAccountPort.updateAccount(destinationAccount);

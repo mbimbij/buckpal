@@ -6,11 +6,15 @@ import io.reflectoring.buckpal.account.application.port.in.SendMoneyCommand;
 import io.reflectoring.buckpal.account.application.port.in.UpdateAccountPort;
 import io.reflectoring.buckpal.account.domain.Account;
 import io.reflectoring.buckpal.account.domain.AccountId;
+import io.reflectoring.buckpal.account.domain.ActivityFactory;
 import org.javamoney.moneta.Money;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import javax.money.Monetary;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -18,6 +22,13 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 public class SendMoneyServiceShould {
+    private ActivityFactory activityFactory;
+
+    @BeforeEach
+    void setUp() {
+        activityFactory = Mockito.spy(new ActivityFactory());
+    }
+
     @Test
     void sendMoney_inNominalCase() {
         // GIVEN
@@ -32,7 +43,7 @@ public class SendMoneyServiceShould {
         UpdateAccountPort updateAccountPort = mock(UpdateAccountPort.class);
         LockAccountPort accountLock = mock(LockAccountPort.class);
 
-        SendMoneyService sendMoneyService = new SendMoneyService(loadAccountPort, accountLock, updateAccountPort);
+        SendMoneyService sendMoneyService = new SendMoneyService(loadAccountPort, accountLock, updateAccountPort, activityFactory);
 
         Money eur10 = Money.of(10, Monetary.getCurrency("EUR"));
         SendMoneyCommand sendMoneyCommand = new SendMoneyCommand(sourceId, destinationId, eur10);
@@ -47,8 +58,8 @@ public class SendMoneyServiceShould {
         verify(accountLock).lock(eq(sourceId));
         verify(accountLock).lock(eq(destinationId));
 
-        verify(source).transferOut(eur10, destinationId);
-        verify(destination).transferIn(eur10, sourceId);
+        verify(source).transferOut(any(), eq(eur10), eq(destinationId));
+        verify(destination).transferIn(any(), eq(eur10), eq(sourceId));
 
         verify(updateAccountPort).updateAccount(eq(source));
         verify(updateAccountPort).updateAccount(eq(destination));

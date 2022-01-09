@@ -1,15 +1,22 @@
 package io.reflectoring.buckpal.account.domain;
 
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.javamoney.moneta.Money;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.money.CurrencyUnit;
+import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class AccountShould {
+
+    private ActivityFactory activityFactory;
+
+    @BeforeEach
+    void setUp() {
+        activityFactory = Mockito.spy(new ActivityFactory());
+    }
+
     @Test
     void createAnActivity_whenTransferOut() {
         // GIVEN
@@ -18,14 +25,14 @@ class AccountShould {
         assertThat(account.getActivities().size()).isEqualTo(0);
 
         // WHEN
-        account.transferOut(Money.of(10,"EUR"), destination);
+        account.transferOut(activityFactory, Money.of(10, "EUR"), destination);
 
         // THEN
         assertThat(account.getActivities().size()).isEqualTo(1);
         Activity activity = account.getActivities().get(0);
         SoftAssertions.assertSoftly(softAssertions -> {
-            softAssertions.assertThat(activity.getMonetaryAmount()).isEqualTo(Money.of(-10,"EUR"));
-            softAssertions.assertThat(activity.getSourceOrDestinationAccountId()).isEqualTo(destination);
+            softAssertions.assertThat(activity.getMonetaryAmount()).isEqualTo(Money.of(-10, "EUR"));
+            softAssertions.assertThat(activity.getAccountId()).isEqualTo(destination);
         });
     }
 
@@ -37,14 +44,14 @@ class AccountShould {
         assertThat(account.getActivities().size()).isEqualTo(0);
 
         // WHEN
-        account.transferIn(Money.of(10,"EUR"), source);
+        account.transferIn(activityFactory, Money.of(10, "EUR"), source);
 
         // THEN
         assertThat(account.getActivities().size()).isEqualTo(1);
         Activity activity = account.getActivities().get(0);
         SoftAssertions.assertSoftly(softAssertions -> {
-            softAssertions.assertThat(activity.getMonetaryAmount()).isEqualTo(Money.of(10,"EUR"));
-            softAssertions.assertThat(activity.getSourceOrDestinationAccountId()).isEqualTo(source);
+            softAssertions.assertThat(activity.getMonetaryAmount()).isEqualTo(Money.of(10, "EUR"));
+            softAssertions.assertThat(activity.getAccountId()).isEqualTo(source);
         });
     }
 }

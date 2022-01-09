@@ -16,13 +16,13 @@ public class Account {
         activities = new Activities();
     }
 
-    public boolean transferOut(MonetaryAmount monetaryAmount, AccountId destinationId) {
-        activities.add(new Activity(monetaryAmount.negate(), destinationId));
+    public boolean transferOut(ActivityFactory activityFactory, MonetaryAmount monetaryAmount, AccountId destinationId) {
+        activities.add(activityFactory.createMovementActivity(monetaryAmount.negate(), destinationId));
         return true;
     }
 
-    public void transferIn(MonetaryAmount monetaryAmount, AccountId sourceId) {
-        activities.add(new Activity(monetaryAmount, sourceId));
+    public void transferIn(ActivityFactory activityFactory, MonetaryAmount monetaryAmount, AccountId sourceId) {
+        activities.add(activityFactory.createMovementActivity(monetaryAmount, sourceId));
     }
 
     public Activities getActivities() {
