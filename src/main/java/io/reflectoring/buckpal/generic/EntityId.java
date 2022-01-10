@@ -8,9 +8,10 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @Getter
-@FieldDefaults(makeFinal=false, level= AccessLevel.PRIVATE) @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class EntityId {
-    String id;
+public class EntityId<T> {
+    T id;
 }
