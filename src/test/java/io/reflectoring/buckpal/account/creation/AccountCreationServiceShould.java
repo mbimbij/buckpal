@@ -1,12 +1,8 @@
 package io.reflectoring.buckpal.account.creation;
 
 import io.reflectoring.buckpal.account.AccountId;
-import io.reflectoring.buckpal.generic.DomainEvent;
-import io.reflectoring.buckpal.generic.IPublishDomainEvents;
+import io.reflectoring.buckpal.account.rightside.MockPublisher;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
@@ -38,16 +34,4 @@ class AccountCreationServiceShould {
         assertThat(mockPublisher.getDomainEvents().get(0)).isEqualTo(expectedEvent);
     }
 
-    public static class MockPublisher implements IPublishDomainEvents {
-        private List<DomainEvent> domainEvents = new ArrayList<>();
-
-        @Override
-        public void publish(DomainEvent domainEvent) {
-            domainEvents.add(domainEvent);
-        }
-
-        public List<DomainEvent> getDomainEvents() {
-            return domainEvents;
-        }
-    }
 }
