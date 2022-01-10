@@ -5,7 +5,7 @@ import io.reflectoring.buckpal.account.AccountId;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class AccountFactory {
+class AccountFactory {
     private final AccountIdGenerator accountIdGenerator;
 
     Account createAccount(CustomerId customerId) {

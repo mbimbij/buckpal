@@ -3,7 +3,7 @@ package io.reflectoring.buckpal.account.creation;
 import io.reflectoring.buckpal.account.Account;
 import io.reflectoring.buckpal.generic.IPublishDomainEvents;
 
-public class AccountCreationService implements ICreateAccount {
+class AccountCreationService implements ICreateAccount {
     private final AccountFactory accountFactory;
     private final IPublishDomainEvents iPublishDomainEvents;
 
