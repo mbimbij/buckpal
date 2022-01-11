@@ -1,7 +1,8 @@
 package io.reflectoring.buckpal.account.consultation;
 
-import io.reflectoring.buckpal.account.Account;
-import io.reflectoring.buckpal.account.AccountId;
+import io.reflectoring.buckpal.account.application.port.in.IGetAccountDetails;
+import io.reflectoring.buckpal.account.domain.Account;
+import io.reflectoring.buckpal.account.domain.AccountId;
 import io.reflectoring.buckpal.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 

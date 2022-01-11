@@ -1,8 +1,8 @@
-package io.reflectoring.buckpal.account.creation;
+package io.reflectoring.buckpal.account.domain;
 
 import io.reflectoring.buckpal.generic.EntityId;
 
-class CustomerId extends EntityId<String> {
+public class CustomerId extends EntityId<String> {
     public CustomerId(String id) {
         super(id);
     }

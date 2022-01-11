@@ -1,7 +1,7 @@
 package io.reflectoring.buckpal.account.rightside;
 
-import io.reflectoring.buckpal.generic.DomainEvent;
-import io.reflectoring.buckpal.generic.IPublishDomainEvents;
+import io.reflectoring.buckpal.account.application.port.out.DomainEvent;
+import io.reflectoring.buckpal.account.application.port.out.IPublishDomainEvents;
 
 import java.util.ArrayList;
 import java.util.List;

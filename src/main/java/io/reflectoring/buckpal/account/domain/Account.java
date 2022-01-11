@@ -1,5 +1,6 @@
-package io.reflectoring.buckpal.account;
+package io.reflectoring.buckpal.account.domain;
 
+import io.reflectoring.buckpal.account.Activity;
 import io.reflectoring.buckpal.account.close.AccountAlreadyClosedException;
 import io.reflectoring.buckpal.account.close.ClosingAccountWithNonZeroBalanceException;
 import io.reflectoring.buckpal.account.withdraw.InsufficientFundsException;
@@ -12,9 +13,9 @@ import java.util.List;
 
 public class Account {
     private final AccountId id;
+    private final List<Activity> activities = new ArrayList<>();
     private MonetaryAmount balance;
     private boolean closed;
-    private List<Activity> activities = new ArrayList<>();
 
     public Account(AccountId accountId) {
         id = accountId;

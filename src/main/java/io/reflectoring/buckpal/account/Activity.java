@@ -1,5 +1,6 @@
 package io.reflectoring.buckpal.account;
 
+import io.reflectoring.buckpal.account.domain.ActivityId;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

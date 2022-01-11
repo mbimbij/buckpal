@@ -1,6 +1,6 @@
-package io.reflectoring.buckpal.account.deposit;
+package io.reflectoring.buckpal.account.application.port.in;
 
-import io.reflectoring.buckpal.account.AccountId;
+import io.reflectoring.buckpal.account.domain.AccountId;
 
 import javax.money.MonetaryAmount;
 import java.time.ZonedDateTime;

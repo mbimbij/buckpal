@@ -1,7 +1,10 @@
 package io.reflectoring.buckpal.account.creation;
 
-import io.reflectoring.buckpal.account.Account;
-import io.reflectoring.buckpal.generic.IPublishDomainEvents;
+import io.reflectoring.buckpal.account.application.port.in.ICreateAccount;
+import io.reflectoring.buckpal.account.domain.Account;
+import io.reflectoring.buckpal.account.application.port.out.IPublishDomainEvents;
+import io.reflectoring.buckpal.account.domain.AccountFactory;
+import io.reflectoring.buckpal.account.domain.CustomerId;
 
 class AccountCreationService implements ICreateAccount {
     private final AccountFactory accountFactory;

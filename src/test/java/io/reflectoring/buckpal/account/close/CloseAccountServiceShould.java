@@ -1,7 +1,7 @@
 package io.reflectoring.buckpal.account.close;
 
-import io.reflectoring.buckpal.account.Account;
-import io.reflectoring.buckpal.account.AccountId;
+import io.reflectoring.buckpal.account.domain.Account;
+import io.reflectoring.buckpal.account.domain.AccountId;
 import io.reflectoring.buckpal.account.AccountRepository;
 import io.reflectoring.buckpal.account.rightside.MockPublisher;
 import org.javamoney.moneta.Money;

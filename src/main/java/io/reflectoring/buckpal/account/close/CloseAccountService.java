@@ -1,9 +1,10 @@
 package io.reflectoring.buckpal.account.close;
 
-import io.reflectoring.buckpal.account.Account;
-import io.reflectoring.buckpal.account.AccountId;
+import io.reflectoring.buckpal.account.application.port.in.ICloseAccount;
+import io.reflectoring.buckpal.account.domain.Account;
+import io.reflectoring.buckpal.account.domain.AccountId;
 import io.reflectoring.buckpal.account.AccountRepository;
-import io.reflectoring.buckpal.generic.IPublishDomainEvents;
+import io.reflectoring.buckpal.account.application.port.out.IPublishDomainEvents;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

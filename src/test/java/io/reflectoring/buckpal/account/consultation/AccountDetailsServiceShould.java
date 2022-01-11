@@ -1,12 +1,12 @@
 package io.reflectoring.buckpal.account.consultation;
 
-import io.reflectoring.buckpal.account.Account;
-import io.reflectoring.buckpal.account.AccountId;
+import io.reflectoring.buckpal.account.domain.Account;
+import io.reflectoring.buckpal.account.domain.AccountId;
 import io.reflectoring.buckpal.account.AccountRepository;
-import io.reflectoring.buckpal.account.ActivityId;
-import io.reflectoring.buckpal.account.ActivityIdGenerator;
-import io.reflectoring.buckpal.account.Credit;
-import io.reflectoring.buckpal.account.Debit;
+import io.reflectoring.buckpal.account.domain.ActivityId;
+import io.reflectoring.buckpal.account.domain.ActivityIdGenerator;
+import io.reflectoring.buckpal.account.domain.Credit;
+import io.reflectoring.buckpal.account.domain.Debit;
 import org.javamoney.moneta.Money;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package io.reflectoring.buckpal.account;
+package io.reflectoring.buckpal.account.domain;
 
 @FunctionalInterface
 public interface ActivityIdGenerator {

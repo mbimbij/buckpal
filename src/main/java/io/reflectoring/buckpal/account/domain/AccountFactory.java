@@ -1,14 +1,13 @@
-package io.reflectoring.buckpal.account.creation;
+package io.reflectoring.buckpal.account.domain;
 
-import io.reflectoring.buckpal.account.Account;
-import io.reflectoring.buckpal.account.AccountId;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+public
 class AccountFactory {
     private final AccountIdGenerator accountIdGenerator;
 
-    Account createAccount(CustomerId customerId) {
+    public Account createAccount(CustomerId customerId) {
         AccountId accountId = accountIdGenerator.nextAccountId();
         return new Account(accountId);
     }
