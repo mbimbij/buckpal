@@ -8,7 +8,6 @@ import io.reflectoring.buckpal.account.domain.AccountFactory;
 import io.reflectoring.buckpal.account.domain.AccountId;
 import io.reflectoring.buckpal.account.domain.AccountIdGenerator;
 import io.reflectoring.buckpal.account.domain.CustomerId;
-import io.reflectoring.buckpal.account.adapter.out.DomainEventPublisher;
 import io.reflectoring.buckpal.account.utils.TestUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.util.Pair;

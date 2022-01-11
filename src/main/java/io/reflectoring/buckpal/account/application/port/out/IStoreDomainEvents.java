@@ -7,5 +7,6 @@ import java.util.Collection;
 
 public interface IStoreDomainEvents {
     void add(DomainEvent domainEvent);
+
     <T> Collection<DomainEvent> getById(EntityId<T> entityId);
 }
