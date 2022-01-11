@@ -1,6 +1,7 @@
 package io.reflectoring.buckpal.account.deposit;
 
 import io.reflectoring.buckpal.account.AccountId;
+import io.reflectoring.buckpal.account.AccountRepository;
 import io.reflectoring.buckpal.account.rightside.MockPublisher;
 import io.reflectoring.buckpal.generic.DomainEvent;
 import org.javamoney.moneta.Money;
@@ -10,13 +11,14 @@ import javax.money.MonetaryAmount;
 import java.time.ZonedDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 class FundsDepositServiceShould {
     @Test
     void allowACustomerToDepositFundsIntoAnExistingAccount() {
         // GIVEN
         MockPublisher mockPublisher = new MockPublisher();
-        FundsDepositService fundsDepositService = new FundsDepositService(mockPublisher);
+        FundsDepositService fundsDepositService = new FundsDepositService(mock(AccountRepository.class), mockPublisher);
         AccountId accountId = new AccountId("id");
         MonetaryAmount monetaryAmount = Money.of(10, "EUR");
         ZonedDateTime depositDateTime = ZonedDateTime.now();

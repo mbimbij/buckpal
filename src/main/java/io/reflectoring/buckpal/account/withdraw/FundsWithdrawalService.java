@@ -16,7 +16,7 @@ public class FundsWithdrawalService implements IWithdrawFunds {
     @Override
     public void withdraw(AccountId accountId, MonetaryAmount monetaryAmount, ZonedDateTime withdrawDateTime, String description) {
         accountRepository.findById(accountId)
-                         .ifPresent(account -> account.withdraw(monetaryAmount));
+                         .ifPresent(account -> account.withdraw(monetaryAmount, withdrawDateTime, description));
         iPublishDomainEvents.publish(new FundsWithdrawnEvent(accountId, monetaryAmount, withdrawDateTime, description));
     }
 }

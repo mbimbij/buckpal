@@ -6,11 +6,15 @@ import io.reflectoring.buckpal.account.withdraw.InsufficientFundsException;
 import org.javamoney.moneta.Money;
 
 import javax.money.MonetaryAmount;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Account {
     private final AccountId id;
     private MonetaryAmount balance;
     private boolean closed;
+    private List<Activity> activities = new ArrayList<>();
 
     public Account(AccountId accountId) {
         id = accountId;
@@ -26,12 +30,13 @@ public class Account {
         return id;
     }
 
-    public void withdraw(MonetaryAmount monetaryAmount) {
+    public void withdraw(MonetaryAmount monetaryAmount, ZonedDateTime withdrawDateTime, String description) {
         if (balance.subtract(monetaryAmount).isNegative()) {
             throw new InsufficientFundsException();
         }
 
         balance = balance.subtract(monetaryAmount);
+        activities.add(Debit.newDebit(monetaryAmount, withdrawDateTime, description));
     }
 
     public void close() {
@@ -41,5 +46,18 @@ public class Account {
             throw new AccountAlreadyClosedException();
         }
         closed = true;
+    }
+
+    public void deposit(MonetaryAmount monetaryAmount, ZonedDateTime depositDateTime, String description) {
+        activities.add(Credit.newCredit(monetaryAmount, depositDateTime, description));
+        balance = balance.add(monetaryAmount);
+    }
+
+    public MonetaryAmount getBalance() {
+        return balance;
+    }
+
+    public List<Activity> getActivities() {
+        return activities;
     }
 }
