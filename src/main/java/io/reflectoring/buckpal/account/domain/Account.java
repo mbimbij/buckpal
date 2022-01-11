@@ -1,9 +1,8 @@
 package io.reflectoring.buckpal.account.domain;
 
-import io.reflectoring.buckpal.account.Activity;
-import io.reflectoring.buckpal.account.close.AccountAlreadyClosedException;
-import io.reflectoring.buckpal.account.close.ClosingAccountWithNonZeroBalanceException;
-import io.reflectoring.buckpal.account.withdraw.InsufficientFundsException;
+import io.reflectoring.buckpal.account.service.close.AccountAlreadyClosedException;
+import io.reflectoring.buckpal.account.service.close.ClosingAccountWithNonZeroBalanceException;
+import io.reflectoring.buckpal.account.service.withdraw.InsufficientFundsException;
 import org.javamoney.moneta.Money;
 
 import javax.money.MonetaryAmount;
