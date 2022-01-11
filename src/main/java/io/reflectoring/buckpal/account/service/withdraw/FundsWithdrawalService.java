@@ -2,7 +2,7 @@ package io.reflectoring.buckpal.account.service.withdraw;
 
 import io.reflectoring.buckpal.account.application.port.in.IWithdrawFunds;
 import io.reflectoring.buckpal.account.domain.AccountId;
-import io.reflectoring.buckpal.account.application.port.out.AccountRepository;
+import io.reflectoring.buckpal.account.domain.AccountRepository;
 import io.reflectoring.buckpal.account.application.port.out.IPublishDomainEvents;
 import lombok.RequiredArgsConstructor;
 

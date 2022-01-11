@@ -8,6 +8,8 @@ import io.reflectoring.buckpal.account.domain.EntityId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class InMemoryEventStore implements IStoreDomainEvents, IHandleDomainEvents {
     private final List<DomainEvent> domainEvents = new ArrayList<>();
@@ -29,7 +31,9 @@ public class InMemoryEventStore implements IStoreDomainEvents, IHandleDomainEven
 
     @Override
     public <T> Collection<DomainEvent> getById(EntityId<T> entityId) {
-        return null;
+        return domainEvents.stream()
+                           .filter(domainEvent -> Objects.equals(domainEvent.getEntityId(), entityId))
+                           .collect(Collectors.toList());
     }
 
     public List<DomainEvent> getAll() {

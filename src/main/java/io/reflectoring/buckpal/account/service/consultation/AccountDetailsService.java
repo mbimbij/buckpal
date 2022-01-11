@@ -3,7 +3,7 @@ package io.reflectoring.buckpal.account.service.consultation;
 import io.reflectoring.buckpal.account.application.port.in.IGetAccountDetails;
 import io.reflectoring.buckpal.account.domain.Account;
 import io.reflectoring.buckpal.account.domain.AccountId;
-import io.reflectoring.buckpal.account.application.port.out.AccountRepository;
+import io.reflectoring.buckpal.account.domain.AccountRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

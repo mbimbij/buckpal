@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @EqualsAndHashCode(callSuper = true)
 public class AccountCreatedEvent extends DomainEvent {
-    CustomerId customerId;
+    final CustomerId customerId;
 
     public AccountCreatedEvent(AccountId accountId, CustomerId customerId) {
         this.entityId = accountId;
