@@ -1,4 +1,4 @@
-package io.reflectoring.buckpal.account.adapter.out;
+package io.reflectoring.buckpal.account.domain;
 
 import io.reflectoring.buckpal.account.application.port.out.IHandleDomainEvents;
 import io.reflectoring.buckpal.account.application.port.out.IPublishDomainEvents;

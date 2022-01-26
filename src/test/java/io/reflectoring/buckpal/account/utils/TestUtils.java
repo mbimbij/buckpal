@@ -1,6 +1,6 @@
 package io.reflectoring.buckpal.account.utils;
 
-import io.reflectoring.buckpal.account.adapter.out.DomainEventPublisher;
+import io.reflectoring.buckpal.account.domain.DomainEventPublisher;
 import io.reflectoring.buckpal.account.adapter.out.InMemoryEventStore;
 import io.reflectoring.buckpal.account.application.port.out.IPublishDomainEvents;
 import org.springframework.data.util.Pair;
